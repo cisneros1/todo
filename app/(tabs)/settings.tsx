@@ -3,15 +3,13 @@ import { StyleSheet, View, Text } from "react-native";
 import Task from "../../components/Task";
 import BottomNav from "@/components/BottomNav";
 
-const Index = () => {
+const Settings = () => {
   return (
-    <>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Index</Text>
-        <Task taskName="task 1" />
-        <Task taskName="task 2" />
-      </View>
-    </>
+    <View style={styles.container}>
+      <Text style={styles.heading}>Today</Text>
+
+      <BottomNav />
+    </View>
   );
 };
 
@@ -27,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+export default Settings;
