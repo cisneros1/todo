@@ -1,13 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import Task from "../../components/Task";
-import BottomNav from "@/components/BottomNav";
 
 const Calendar = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Calendar</Text>
-      <BottomNav />
     </View>
   );
 };
