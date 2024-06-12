@@ -10,8 +10,6 @@ const dayList = [
   "Saturday",
 ];
 
-const Separator = () => <View style={styles.separator} />;
-
 const IndexHeading = () => {
   const date = new Date();
   const currentDay = dayList[date.getDay()];
@@ -20,34 +18,31 @@ const IndexHeading = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Today</Text>
-      <Text style={styles.currentDate}>{currentDay}</Text>
-
-      <Separator />
+      <Text style={styles.currentDate}>{currentDay} :: June 2</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "orange",
-    padding: 20,
-    marginBottom: 0,
+    padding: 10,
+    paddingBottom: 8,
+    marginBottom: 0!,
     borderBottomColor: "black",
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    // borderBottomWidth: 0.5,
   },
   heading: {
     fontSize: 24,
-    fontWeight: "bold",
+    padding: 5,
+    fontWeight: "300",
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 12,
   },
   currentDate: {
     fontSize: 18,
-    textAlign: "center",
-  },
-  separator: {
-    borderBottomColor: "black",
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    fontWeight: "600",
+    textAlign: "left",
+    marginBottom: 0!,
   },
 });
 

@@ -1,38 +1,21 @@
-import React, { useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useTaskMode } from "@/hooks/useTaskMode";
 
-const deviceHeight = Dimensions.get("window").height;
-const deviceWidth = Dimensions.get("window").width;
+const AddTask = () => {
+  const { changeTaskMode } = useTaskMode();
 
-// const [keyboardStatus, setKeyboardStatus] = useState("");
-
-export default function AddTask() {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.circle}
-        onPress={() => console.log("Add Task")}
-      >
+    <View>
+      <TouchableOpacity style={styles.circle} onPress={() => changeTaskMode()}>
         <Icon name={"plus"} size={25} color={"white"} />
-
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-  },
   circle: {
     backgroundColor: "#f52d56",
     width: 60,
@@ -41,7 +24,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
-    bottom: 20,
+    bottom: 10,
     right: 15,
   },
 });
+
+export default AddTask;

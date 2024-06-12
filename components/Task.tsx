@@ -1,43 +1,32 @@
 import React from "react";
-import {StyleSheet, View, Text, TouchableOpacity} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const Task = (task: { taskName: string }) => {
   return (
-    <View style={styles.taskContainer} className="border-solid">
-      {/* checkbox */}
-      <TouchableOpacity style={styles.checkbox}></TouchableOpacity>
-
-      {/* task name */}
-      <Text style={styles.taskDescription}>{task.taskName}</Text>
+    <View style={styles.container}>
+      <TouchableOpacity></TouchableOpacity>
+      <Text style={styles.text}>{task.taskName}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  taskContainer: {
-    // flex: 1,
-    flexDirection: "row",
-    backgroundColor: "alticeblue",
-    paddingLeft: 8,
-    borderWidth: 0.5,
-    borderColor: "gray",
+  container: {
+    padding: 12,
+    backgroundColor: "white",
     borderRadius: 5,
-    marginHorizontal: 20,
-    marginBottom: 15,
-    padding: 10,
+    shadowColor: "blue",
+    shadowOffset: { width: 0, height: 1.5 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
+    marginHorizontal: 15,
+    marginBottom: 12,
   },
-  checkbox: {
-    width: 20,
-    height: 20,
-    backgroundColor: "blue",
-    borderRadius: 50,
-  },
-  taskDescription: {
-    paddingLeft: 8,
+  text: {
+    fontSize: 18,
+    color: "black",
   },
 });
 
 export default Task;
-
-
-
