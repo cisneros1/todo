@@ -7,15 +7,20 @@ const AddTask = () => {
   const { changeTaskMode } = useTaskMode();
 
   return (
-    <SafeAreaView>
+    <View style={styles.wrapper}>
       <TouchableOpacity style={styles.circle} onPress={() => changeTaskMode()}>
         <Icon name={"plus"} size={25} color={"white"} />
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    marginBottom: 0,
+    paddingBottom: 0,
+    position: "relative",
+  },
   circle: {
     backgroundColor: "#f52d56",
     width: 60,
@@ -24,8 +29,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
-    bottom: 10,
+    paddingTop: 2,
+    marginBottom: 2,
     right: 15,
+    marginTop: 12,
   },
 });
 

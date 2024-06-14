@@ -3,14 +3,17 @@ import { StyleSheet } from "react-native";
 import IndexHeading from "@/components/IndexHedaing";
 import ListView from "@/components/ListView";
 import { View } from "react-native";
+import { useTaskMode } from "@/hooks/useTaskMode";
+import AddTask from "@/components/AddTask";
 
 const Index = () => {
+  const { taskMode } = useTaskMode();
+
   return (
     <>
       <View style={styles.container}>
         <IndexHeading />
         <ListView />
-        {/*<AddTask />*/}
       </View>
     </>
   );

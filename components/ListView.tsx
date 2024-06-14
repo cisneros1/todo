@@ -5,14 +5,16 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Platform,
-  Text,
-  FlatList,
 } from "react-native";
 
 import Task from "./Task";
 import { KeyboardAwareFlatList } from "react-native-keyboard-aware-scroll-view";
+import { useTaskMode } from "@/hooks/useTaskMode";
+import Input from "@/components/Input";
+import AddTask from "@/components/AddTask";
 
 const ListView = () => {
+  const { taskMode } = useTaskMode();
   const DATA = [
     {
       taskID: 1,
@@ -68,13 +70,7 @@ const ListView = () => {
         keyExtractor={(item) => item.taskID}
         contentContainerStyle={styles.list}
       />
-
-      <View style={styles.screen}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Enter something here"
-        />
-      </View>
+      {taskMode ? <Input /> : <AddTask />}
     </KeyboardAvoidingView>
   );
 };
@@ -89,15 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#4066a3",
   },
-  textInput: {
-    backgroundColor: "#fff",
-    marginBottom: 65,
-    borderWidth: 1,
-    borderColor: "#999",
-    padding: 7,
-    height: 30,
-    width: 300,
-  },
+
   listContainer: {
     flex: 1,
     marginBottom: 60, // Ensure the list container has space at the bottom for the TextInput

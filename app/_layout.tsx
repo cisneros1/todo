@@ -7,7 +7,6 @@ import Index from "@/app/(tabs)/index";
 import Calendar from "@/app/(tabs)/calendar";
 import Settings from "@/app/(tabs)/settings";
 
-
 const Tab = createBottomTabNavigator();
 
 export default function RootLayout() {
