@@ -8,7 +8,7 @@ export interface TaskState {
 
 export const useTaskMode = create<TaskState>((set) => ({
   taskId: "",
-  taskMode: false,
+  taskMode: true,
   changeTaskMode: () =>
     set((state) => ({
       ...state,

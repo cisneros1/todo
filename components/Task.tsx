@@ -1,11 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const Task = (task: { taskName: string }) => {
+export type TaskProps = {
+  // taskId: number;
+  taskName: string;
+};
+
+const Task = ({ taskName }: TaskProps) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity></TouchableOpacity>
-      <Text style={styles.text}>{task.taskName}</Text>
+      <Text style={styles.text}>{taskName}</Text>
     </View>
   );
 };

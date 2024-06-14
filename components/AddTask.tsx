@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useTaskMode } from "@/hooks/useTaskMode";
 
@@ -7,11 +7,11 @@ const AddTask = () => {
   const { changeTaskMode } = useTaskMode();
 
   return (
-    <View>
+    <SafeAreaView>
       <TouchableOpacity style={styles.circle} onPress={() => changeTaskMode()}>
         <Icon name={"plus"} size={25} color={"white"} />
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
