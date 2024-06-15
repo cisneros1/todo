@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  View,
   KeyboardAvoidingView,
-  TextInput,
   Platform,
+  FlatList,
+  ScrollView,
+  Dimensions,
 } from "react-native";
 
 import Task from "./Task";
-import { KeyboardAwareFlatList } from "react-native-keyboard-aware-scroll-view";
 import { useTaskMode } from "@/hooks/useTaskMode";
 import Input from "@/components/Input";
 import AddTask from "@/components/AddTask";
+import EAddTaskHeight from "@/components/AddTask";
+
+const deviceHeight = Dimensions.get("window").height;
+console.log(deviceHeight);
+
+const height = EAddTaskHeight;
+console.log(height);
 
 const ListView = () => {
   const { taskMode } = useTaskMode();
@@ -56,21 +63,40 @@ const ListView = () => {
       taskID: 10,
       taskName: "Task 10",
     },
+    {
+      taskID: 11,
+      taskName: "Task 11",
+    },
+    {
+      taskID: 12,
+      taskName: "Task 12",
+    },
+    {
+      taskID: 13,
+      taskName: "Task 13",
+    },
+    {
+      taskID: 14,
+      taskName: "Task 14",
+    },
   ];
 
   return (
     <KeyboardAvoidingView
-      keyboardVerticalOffset={60}
+      keyboardVerticalOffset={100}
       behavior={Platform.OS == "ios" ? "position" : "height"}
       style={styles.wrapper}
     >
-      <KeyboardAwareFlatList
-        data={DATA}
-        renderItem={({ item }) => <Task taskName={item.taskName} />}
-        keyExtractor={(item) => item.taskID}
-        contentContainerStyle={styles.list}
-      />
-      {taskMode ? <Input /> : <AddTask />}
+      <ScrollView style={styles.scrollView}>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => <Task taskName={item.taskName} />}
+          keyExtractor={(item) => item.taskID.toString()}
+          contentContainerStyle={styles.list}
+          nestedScrollEnabled={true}
+        />
+      </ScrollView>
+      {!taskMode ? <Input /> : <AddTask />}
     </KeyboardAvoidingView>
   );
 };
@@ -79,6 +105,7 @@ const ListView = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    flexDirection: "column",
   },
   screen: {
     flex: 1,
@@ -88,10 +115,15 @@ const styles = StyleSheet.create({
 
   listContainer: {
     flex: 1,
-    marginBottom: 60, // Ensure the list container has space at the bottom for the TextInput
+    marginBottom: 100, // Ensure the list container has space at the bottom for the TextInput
   },
   list: {
     flexGrow: 1,
+  },
+  scrollView: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: deviceHeight - 346,
   },
 });
 

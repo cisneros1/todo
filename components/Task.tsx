@@ -9,6 +9,7 @@ export type TaskProps = {
 const Task = ({ taskName }: TaskProps) => {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.button}></TouchableOpacity>
       <Text style={styles.text}>{taskName}</Text>
     </View>
   );
@@ -16,6 +17,9 @@ const Task = ({ taskName }: TaskProps) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start",
     padding: 12,
     backgroundColor: "white",
     borderRadius: 5,
@@ -25,11 +29,19 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
     marginHorizontal: 15,
-    marginBottom: 12,
+    marginBottom: 15,
   },
   text: {
+    paddingLeft: 6.5,
+    paddingTop: 3,
     fontSize: 18,
     color: "black",
+  },
+  button: {
+    height: 25,
+    width: 25,
+    borderRadius: 50,
+    backgroundColor: "grey",
   },
 });
 

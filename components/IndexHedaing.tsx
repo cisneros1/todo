@@ -27,8 +27,10 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingBottom: 8,
-    marginBottom: 0!,
+    marginBottom: 10,
     borderBottomColor: "black",
+    zIndex: 1,
+
     // borderBottomWidth: 0.5,
   },
   heading: {
