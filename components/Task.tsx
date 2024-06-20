@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export type TaskProps = {
-  // taskId: number;
+  taskId: number;
   taskName: string;
 };
 
-const Task = ({ taskName }: TaskProps) => {
+const Task = ({ taskId, taskName }: TaskProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}></TouchableOpacity>

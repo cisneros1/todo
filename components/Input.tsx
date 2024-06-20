@@ -5,10 +5,25 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useDataStore } from "@/hooks/useDataStore";
 
 export default function Input() {
+  const textInputRef = useRef<TextInput | null>(null);
+  const tasks = useDataStore();
+
+  const handleSubmit = (input: string) => {
+    textInputRef.current != null ? textInputRef.current.clear() : null;
+    console.log(input);
+
+    // add task to list
+    tasks.addTask({
+      taskId: tasks.tasks.length + 1,
+      taskName: input,
+    });
+  };
+
   return (
     <View
       style={styles.screen}
@@ -17,7 +32,13 @@ export default function Input() {
         const AddTaskHeight = height;
       }}
     >
-      <TextInput style={styles.textInput} placeholder="Enter something here" />
+      <TextInput
+        ref={textInputRef}
+        style={styles.textInput}
+        placeholder="Enter something here"
+        onSubmitEditing={(event) => handleSubmit(event.nativeEvent.text)}
+        clearTextOnFocus={true}
+      />
       <TouchableOpacity style={styles.button}>
         <Icon
           name={"arrow-up"}

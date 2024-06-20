@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     marginBottom: 10,
     borderBottomColor: "black",
+    backgroundColor: "white",
     zIndex: 1,
 
     // borderBottomWidth: 0.5,
