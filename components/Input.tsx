@@ -1,11 +1,13 @@
 import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useDataStore } from "@/hooks/useDataStore";
 
 export default function Input() {
   const [enteredTask, setEnteredTask] = React.useState("");
   const taskStore = useDataStore();
+  const textRef = useRef<TextInput | null>(null);
+  const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
 
   useEffect(() => {
     console.log("tasks: ", taskStore.tasks);
@@ -20,28 +22,46 @@ export default function Input() {
         taskName: text,
       });
     } catch (error) {
-      console.log("ERROR IN TRY CATCH");
+      console.log("ERROR IN RETURN");
     }
   };
 
   const handlePress = () => {
     if (enteredTask === "") return;
+    if (textRef != null) textRef.current?.clear();
     console.log("pressed");
-    console.log(enteredTask);
+    try {
+      taskStore.addTask({
+        taskId: taskStore.tasks.length + 1,
+        taskName: enteredTask,
+      });
+      setEnteredTask("");
+    } catch (error) {
+      console.log("ERROR IN PRESS");
+    }
   };
 
   return (
     <View style={styles.screen}>
       <TextInput
         id="textInputId"
+        ref={textRef}
         style={styles.textInput}
         placeholder="Enter something here"
         onSubmitEditing={(event) => {
           event.preventDefault();
+          textRef.current?.clear();
           handleSubmit(event.nativeEvent.text);
         }}
         clearTextOnFocus={true}
         onChangeText={(text) => setEnteredTask(text)}
+        // onEndEditing={() => {
+        //   console.log("end editing");
+        // }}
+        onFocus={() => {
+          console.log("focused");
+          setKeyboardHeight(0);
+        }}
       />
       <TouchableOpacity onPress={() => handlePress()} style={styles.button}>
         <Icon
@@ -64,15 +84,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "#4066a3",
+    marginBottom: 40,
   },
   textInput: {
     backgroundColor: "#fff",
-    marginBottom: 65,
     borderWidth: 1,
     borderColor: "#999",
     borderRadius: 5,
     padding: 7,
+    paddingTop: 0!, //test
     paddingBottom: 10,
     height: 40,
     width: 300,

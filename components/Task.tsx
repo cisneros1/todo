@@ -1,13 +1,23 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 import { TaskInterface } from "/Users/brianc/Software/todo/hooks/useDataStore";
+import { useDataStore } from "@/hooks/useDataStore";
 
 const TaskContainer = ({ taskId, taskName }: TaskInterface) => {
+  const taskStore = useDataStore();
+
+  const removeTask = () => {
+    console.log("Removing task");
+    taskStore.removeTask(taskId);
+  };
+
   console.log(taskId);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}></TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => removeTask()}
+        style={styles.button}
+      ></TouchableOpacity>
       <Text style={styles.text}>{taskName}</Text>
     </View>
   );

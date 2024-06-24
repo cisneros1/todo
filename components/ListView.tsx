@@ -28,8 +28,8 @@ const ListView = () => {
 
   return (
     <KeyboardAvoidingView
-      keyboardVerticalOffset={100}
-      behavior={Platform.OS == "ios" ? "position" : "height"}
+      keyboardVerticalOffset={120}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
       style={styles.wrapper}
     >
       <ScrollView style={styles.scrollView}>
@@ -51,23 +51,17 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     flexDirection: "column",
+    flexGrow: 1,
   },
   screen: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#4066a3",
-  },
-
-  listContainer: {
-    flex: 1,
-    marginBottom: 100, // Ensure the list container has space at the bottom for the TextInput
-  },
-  list: {
-    flexGrow: 1,
+    backgroundColor: "#",
   },
   scrollView: {
     marginTop: 10,
-    marginBottom: 10,
+    // marginBottom: 10,
+    marginBottom: 0!,
     height: deviceHeight - 346,
   },
 });
