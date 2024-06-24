@@ -1,45 +1,49 @@
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
-import React, { useRef } from "react";
+import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import React, { useEffect, useRef } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useDataStore } from "@/hooks/useDataStore";
 
 export default function Input() {
-  const textInputRef = useRef<TextInput | null>(null);
-  const tasks = useDataStore();
+  const [enteredTask, setEnteredTask] = React.useState("");
+  const taskStore = useDataStore();
 
-  const handleSubmit = (input: string) => {
-    textInputRef.current != null ? textInputRef.current.clear() : null;
-    console.log(input);
+  useEffect(() => {
+    console.log("tasks: ", taskStore.tasks);
+  }, [taskStore.tasks]);
 
-    // add task to list
-    tasks.addTask({
-      taskId: tasks.tasks.length + 1,
-      taskName: input,
-    });
+  const handleSubmit = (text: string) => {
+    if (text === "") return;
+    console.log("submit: " + text);
+    try {
+      taskStore.addTask({
+        taskId: taskStore.tasks.length + 1,
+        taskName: text,
+      });
+    } catch (error) {
+      console.log("ERROR IN TRY CATCH");
+    }
+  };
+
+  const handlePress = () => {
+    if (enteredTask === "") return;
+    console.log("pressed");
+    console.log(enteredTask);
   };
 
   return (
-    <View
-      style={styles.screen}
-      onLayout={(event) => {
-        const { x, y, width, height } = event.nativeEvent.layout;
-        const AddTaskHeight = height;
-      }}
-    >
+    <View style={styles.screen}>
       <TextInput
-        ref={textInputRef}
+        id="textInputId"
         style={styles.textInput}
         placeholder="Enter something here"
-        onSubmitEditing={(event) => handleSubmit(event.nativeEvent.text)}
+        onSubmitEditing={(event) => {
+          event.preventDefault();
+          handleSubmit(event.nativeEvent.text);
+        }}
         clearTextOnFocus={true}
+        onChangeText={(text) => setEnteredTask(text)}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={() => handlePress()} style={styles.button}>
         <Icon
           name={"arrow-up"}
           size={20}

@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { number } from "prop-types";
 
 export interface TaskInterface {
   taskId: number;
@@ -7,22 +6,19 @@ export interface TaskInterface {
 }
 
 export interface TaskList {
-  tasks: Task[];
+  tasks: TaskInterface[];
   addTask: (task: TaskInterface) => void;
   removeTask: (taskId: number) => void;
 }
 
 export const useDataStore = create<TaskList>((set) => ({
-  tasks: [
-    {
-      taskId: 1,
-      taskName: "Task Default",
-    },
-  ],
-  addTask: (task: Task) =>
+  tasks: [],
+  addTask: (task: TaskInterface) => {
+    console.log("adding task");
     set((state) => ({
       tasks: [...state.tasks, task],
-    })),
+    }));
+  },
   removeTask: (taskId: number) =>
     set((state) => ({
       tasks: state.tasks.filter((task) => task.taskId !== taskId),

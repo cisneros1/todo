@@ -1,12 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export type TaskProps = {
-  taskId: number;
-  taskName: string;
-};
+import { TaskInterface } from "/Users/brianc/Software/todo/hooks/useDataStore";
 
-const Task = ({ taskId, taskName }: TaskProps) => {
+const TaskContainer = ({ taskId, taskName }: TaskInterface) => {
+  console.log(taskId);
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}></TouchableOpacity>
@@ -45,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Task;
+export default TaskContainer;

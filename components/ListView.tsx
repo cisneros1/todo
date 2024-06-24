@@ -3,12 +3,11 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-  FlatList,
   ScrollView,
   Dimensions,
 } from "react-native";
 
-import Task from "./Task";
+import TaskContainer from "./Task";
 import { useTaskMode } from "@/hooks/useTaskMode";
 import Input from "@/components/Input";
 import AddTask from "@/components/AddTask";
@@ -34,15 +33,12 @@ const ListView = () => {
       style={styles.wrapper}
     >
       <ScrollView style={styles.scrollView}>
-        {/*        <FlatList
-          data={taskList}
-          renderItem={({ item }) => <Task taskName={item.taskName} />}
-          keyExtractor={(item) => item.taskId.toString()}
-          contentContainerStyle={styles.list}
-          nestedScrollEnabled={true}
-        />*/}
         {tasks.map((task: TaskInterface) => (
-          <Task taskId={task.taskId} taskName={task.taskName} />
+          <TaskContainer
+            key={task.taskId}
+            taskId={task.taskId}
+            taskName={task.taskName}
+          />
         ))}
       </ScrollView>
       {!taskMode ? <Input /> : <AddTask />}
